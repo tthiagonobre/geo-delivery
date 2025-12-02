@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm';
+import { Product } from 'src/product/entities/product.entity';
 
 @Entity()
 export class Restaurant {
@@ -16,4 +17,7 @@ export class Restaurant {
     
     @Column({ type: 'decimal', precision: 10, scale: 6 })
     longitude: number;
+
+    @OneToMany(() => Product, (product) => product.restaurant)
+    products: Product[];
 }
